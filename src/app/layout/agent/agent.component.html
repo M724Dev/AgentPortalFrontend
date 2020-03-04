@@ -1,0 +1,96 @@
+<section class="main-container">
+    <h3>Agent List</h3>
+        <hr>
+        <div style="overflow-x:auto;">
+                <table datatable [dtOptions]="dtOptions" [dtTrigger]="dtTrigger" id="agent" class="table table-bordered table-hover">
+                        <thead>
+                            <tr>
+                            <th>AgentID</th>
+                            <th>Agent Type</th>
+                            <th>First Name</th>
+                            <th>Middle Name</th>
+                            <th>Last Name</th>
+                            <th>Daily Deposit Limit</th>
+                            <th>Actions</th>
+                            </tr>
+                        </thead>
+                        <tbody>
+                            <tr *ngFor="let agent of list">      
+                            <td (click)="openData(content, content1, agent)">{{agent.agentID}}</td>
+                            <td (click)="openData(content, content1, agent)">{{getAgentCode(agent.subAgentCodeID)}}</td>
+                            <!-- <td>{{agentType[agent.subAgentCodeID]}}</td> -->
+                            <td (click)="openData(content, content1, agent)">{{agent.firstName}}</td>
+                            <td (click)="openData(content, content1, agent)">{{agent.middleName}}</td>
+                            <td (click)="openData(content, content1, agent)">{{agent.lastName}}</td>
+                            <td (click)="openData(content, content1, agent)">{{agent.dailyDepositLimit}}</td>
+                            <td>
+                                <div id="actions">
+                                <button class="btn btn-primary btn-xs" [routerLink]="['/agentmanagement']" (click)="populateForm(agent, 'true')">Edit &nbsp;<i class="fa fa-pencil-square-o"></i>
+                                </button>                                
+                                <button class="btn btn-danger btn-xs" (click)="onDelete(agent.id)"> Delete &nbsp;<i class="fa fa-trash"></i>
+                                </button>
+                                <button class="btn btn-success btn-xs" [routerLink]="['/agentmanagement']" (click)="populateForm(agent, 'true')">Approve &nbsp;<i class="fa fa-check"></i>
+                                </button>
+                            </div>
+                            </td>
+                            </tr>
+                        </tbody>
+                </table>
+        </div>
+        
+        <ng-template #content let-modal>
+            <div class="modal-header">
+              <h5 class="modal-title">Master Agent Details</h5>
+            </div>
+            <div class="modal-body">
+                <div>
+                    <button class="btn btn-primary btn-xs" [routerLink]="['/subagent']" (click)="[createSubAgent(), modal.close('Close click')]">Add Sub Agent &nbsp;<i class="fa fa-plus"></i>
+                    </button> 
+                </div><br>
+                <div>
+                    <table class="table table-bordered table-hover" id="subagent">
+                        <thead>
+                          <tr>
+                            <th>Sub Agent ID</th>
+                            <th>Agent Name</th>               
+                          </tr>
+                        </thead>
+                        <tbody>
+                            <tr *ngFor="let subagent of sublist">      
+                                <td>{{subagent.agentID}}</td>
+                                <td>{{subagent.firstName}} {{subagent.lastName}}</td>
+                            </tr>
+                        </tbody>
+                    </table> 
+                </div>
+            </div>
+            <div class="modal-footer">
+              <button type="button" class="btn btn-light" (click)="modal.close('Close click')">Close</button>
+            </div>
+        </ng-template>
+
+        <ng-template #content1 let-modal>
+            <div class="modal-header">
+              <h5 class="modal-title">Sub Agent Details</h5>
+            </div>
+            <div class="modal-body">     
+                <table class="table table-bordered table-hover" id="modalTable1">
+                    <thead>
+                      <tr>
+                        <th>Master Agent ID</th>
+                        <th>Agent Name</th>               
+                      </tr>
+                    </thead>
+                    <tbody>
+                        <tr *ngFor="let subagent of sublist">      
+                            <td>{{subagent.agentID}}</td>
+                            <td>{{subagent.firstName}} {{subagent.lastName}}</td>
+                        </tr>                        
+                    </tbody>
+              </table>      
+            </div>
+            <div class="modal-footer">
+              <button type="button" class="btn btn-light" (click)="modal.close('Close click')">Close</button>
+            </div>
+        </ng-template>
+</section>

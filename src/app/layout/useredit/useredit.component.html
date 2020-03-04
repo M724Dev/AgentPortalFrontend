@@ -1,0 +1,56 @@
+
+<form [formGroup]="service.formModel2" autocomplete="off" (submit)="onSubmit()">  
+        <fieldset class="fieldset">
+              <legend class="legend">User Management</legend>
+              <div class="row">
+                <div class="col-2"></div>
+                <div class="col-6">
+                    <div>
+                    <input type="hidden" formControlName="Id" [(ngModel)]="service.formData.id"> 
+                      <div class="input-group">
+                          <label class="role">Admin
+                              <input type="radio" [value]="1" formControlName="RoleID" [(ngModel)]="service.formData.roleID">
+                              <span class="checkmark"></span>
+                          </label>
+                          <label class="role">User
+                              <input type="radio" [value]="2"  formControlName="RoleID" [(ngModel)]="service.formData.roleID">
+                              <span class="checkmark"></span>
+                          </label>
+                      </div>
+                    </div>
+      
+                    <div class="form-group">
+                        <div class="input-group">
+                            <input formControlName="FullName" class="form-control" [(ngModel)]="service.formData.fullName" required>
+                            <label>Full Name</label>
+                            <div class="validation-error" *ngIf="service.formModel2.get('FullName').touched && service.formModel2.get('FullName').errors?.required">This field is required.</div>
+                        </div>
+                    </div>
+                
+                    <div class="form-group">
+                        <div class="input-group">
+                            <input formControlName="Username" class="form-control" [(ngModel)]="service.formData.username" required>
+                            <label>Username</label>
+                            <div class="validation-error" *ngIf="service.formModel2.get('Username').touched && service.formModel2.get('Username').errors?.required" >This field is required.</div>
+                        </div>
+                    </div>
+
+                    <div class="form-group">
+                            <div class="input-group">
+                                <input formControlName="Email" class="form-control" [(ngModel)]="service.formData.email" required>
+                                <label>Email</label>
+                                <div class="validation-error" *ngIf="service.formModel2.get('Email').touched && service.formModel2.get('Email').errors?.email" >This field is required.</div>
+                            </div>
+                    </div>
+                    
+                  <div class="form-group">
+                      <button class="btn btn-success btn-lg btn-block" type="submit" [disabled]="!service.formModel2.valid"><i class="fa fa-save"></i> Submit</button>                
+                      <button class="btn btn-danger btn-lg btn-block" type="button" (click)="cancel()"><i class="fa fa-ban"></i> Cancel</button>
+                  </div>          
+                </div>      
+                <div class="col"></div>      
+              </div>
+        </fieldset>
+        
+      </form>
+      

@@ -1,0 +1,78 @@
+
+<form [formGroup]="service.formModel" autocomplete="off" (submit)="onSubmit()">  
+  <fieldset class="fieldset">
+        <legend class="legend">User Management</legend>
+        <div class="row">
+          <div class="col-2"></div>
+          <div class="col-6">
+              <div>
+                <div class="input-group">
+                    <label class="role">Admin
+                        <input type="radio" value="1" formControlName="RoleID" [(ngModel)]="service.formData.roleID">
+                        <span class="checkmark"></span>
+                    </label>
+                    <label class="role">User
+                        <input type="radio" value="2" formControlName="RoleID" [(ngModel)]="service.formData.roleID">
+                        <span class="checkmark"></span>
+                    </label>
+                </div>
+              </div>
+
+              <div class="form-group">
+                  <div class="input-group">
+                      <input formControlName="FullName" class="form-control" required>
+                      <label>Full Name</label>
+                      <div class="validation-error" *ngIf="service.formModel.get('FullName').touched && service.formModel.get('FullName').errors?.required">This field is required.</div>
+                  </div>
+              </div>
+
+              <div class="form-group">
+                    <div class="input-group">
+                        <input formControlName="Email" class="form-control" [(ngModel)]="service.formData.email" required>
+                        <label>Email</label>
+                        <div class="validation-error" *ngIf="service.formModel.get('Email').touched && service.formModel.get('Email').errors?.required">This field is required.</div>
+                        <div class="validation-error" *ngIf="service.formModel.get('Email').touched && service.formModel.get('Email').errors?.email">Email is invalid.</div>
+                    </div>
+                </div>
+          
+              <div class="form-group">
+                  <div class="input-group">
+                      <input formControlName="Username" class="form-control" [(ngModel)]="service.formData.username" required>
+                      <label>Username</label>
+                      <div class="validation-error" *ngIf="service.formModel.get('Username').touched && service.formModel.get('Username').errors?.required" >This field is required.</div>
+                  </div>
+              </div>
+              
+              <div formGroupName="Passwords">
+            
+                <div class="form-group">
+                    <div class="input-group">
+                        <input type="password" formControlName="Password" class="form-control" [(ngModel)]="service.formData.password" required>
+                        <label>Password</label>
+                        <div class="validation-error" *ngIf="service.formModel.get('Passwords.Password').touched && service.formModel.get('Passwords.Password').errors?.required">This field is required.</div>
+                        <div class="validation-error" *ngIf="service.formModel.get('Passwords.Password').touched && service.formModel.get('Passwords.Password').errors?.pattern">Use 8 or more characters with a mix of letters, numbers, and symbols</div>
+                    </div>
+                </div>
+
+                <div class="form-group">
+                    <div class="input-group">
+                        <input type="password" formControlName="ConfirmPassword" class="form-control" [(ngModel)]="service.formData.cpassword" required>
+                        <label>Confirm Password</label>
+                        <div class="validation-error" *ngIf="service.formModel.get('Passwords.ConfirmPassword').touched && service.formModel.get('Passwords.ConfirmPassword').errors?.required">This field is required.</div>
+                        <div class="validation-error" *ngIf="service.formModel.get('Passwords.ConfirmPassword').touched && service.formModel.get('Passwords.ConfirmPassword').errors?.passwordMismatch">Password not matched.</div>
+                    </div>
+                </div>
+              </div>
+              
+
+              
+            <div class="form-group">
+                <button class="btn btn-success btn-lg btn-block" type="submit" [disabled]="clicked" [disabled]="!service.formModel.valid"><i class="fa fa-save"></i> Submit</button>                
+                <button class="btn btn-danger btn-lg btn-block" type="button" (click)="cancel()"><i class="fa fa-ban"></i> Cancel</button>
+            </div>          
+          </div>      
+          <div class="col"></div>      
+        </div>
+  </fieldset>
+  
+</form>

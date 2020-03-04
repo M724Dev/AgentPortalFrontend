@@ -1,0 +1,124 @@
+<section class="main-container">
+  <div class="container-fluid" >    
+    <div class="row">
+      <div class="col-sm-3 form-inline">
+        <label>To:</label>&nbsp;
+        <input #datefrom type="date" class="form-control col-sm-10" [(ngModel)]="From">
+      </div>
+      <div class="col-sm-3 form-inline">
+        <label>To:</label> &nbsp;
+        <input #dateto type="date" class="form-control col-sm-10" [(ngModel)]="To">  
+      </div>
+      <div class="col-sm-6 form-inline">
+        <button (click)="onKey(datefrom.value, dateto.value)" class="btn btn-success btn-xs btnDate">Go</button>
+        <button (click)="filterDate('yesterday')" class="btn btn-primary btn-xs btnDate">Yesterday</button>
+        <button (click)="filterDate('thisweek')" class="btn btn-primary btn-xs btnDate">This Week</button>
+        <button (click)="filterDate('lastweek')" class="btn btn-primary btn-xs btnDate">Last Week</button>
+        <button (click)="filterDate('thismonth')" class="btn btn-primary btn-xs btnDate">This Month</button>
+        <button (click)="filterDate('lastmonth')" class="btn btn-primary btn-xs btnDate">Last Month</button>     
+      </div>
+    </div>
+  </div>
+  <hr>
+  <div style="overflow-x:auto;">
+      <table datatable [dtOptions]="dtOptions1" [dtTrigger]="dtTrigger1" id="monitoring" class="table table-bordered table-hover">
+            <thead>
+              <tr>
+                <th>Transaction Date</th>
+                <th>Merchant ID</th>
+                <th>Merchant Name</th>
+                <th>Terminal ID</th>                
+                <th>Issuing Bank</th>
+                <th>Bin</th>
+                <th>Transaction Type</th>
+                <th>Amount</th>                
+                <th>Trace No</th>
+                <th>Reference No</th>
+                <th>Connector Name</th>
+                <th>ResponseCode</th>
+                <th>Transaction Account Type</th>
+                <th>Transaction Settlement Amount</th>
+                <th>Fee Type</th>
+                <th>Rate</th>
+                <th>Commission Share</th>
+                <th>EWT</th>  
+              </tr>
+            </thead>
+            <tbody>
+              <tr *ngFor="let mer of list; let i = index"(click)="openData(content, mer)">
+                <td>{{mer.insert_DateTime}}</td>
+                <td>{{mer.merchantId}}</td>
+                <td>{{mer.merchantName}}</td>
+                <td>{{mer.terminal}}</td>
+                <td>{{mer.issuingBank}}</td>
+                <td>{{mer.bin}}</td>
+                <td>{{mer.trx_Type}}</td> 
+                <td>{{mer.amount | currency:" "}}</td>                
+                <td>{{mer.stan}}</td>
+                <td>{{mer.refNo}}</td>
+                <td>{{mer.connectorName}}</td>
+                <td><span class="response" [ngStyle]="{'background-color': getColor(mer.responceCodeText)}">{{mer.code}} : {{mer.responceCodeText}}</span></td>
+                <td>{{mer.transactionType}}</td>
+                <td></td>
+                <td>{{mer.feeType}}</td>
+                <td></td>
+                <td></td>
+                <td></td>
+            </tr>
+            </tbody>
+      </table>
+  </div>
+
+  <ng-template #content let-modal>
+    <div class="modal-header">
+      <h5 class="modal-title">Transaction Details</h5>
+      <!-- <button type="button" class="close" aria-label="Close" (click)="modal.dismiss('Cross click')">
+        <span aria-hidden="true">&times;</span>
+      </button> -->
+    </div>
+    <div class="modal-body">     
+        <table class="table table-bordered table-hover" id="modalTable">
+            <thead>
+              <tr>
+                <th>Field</th>
+                <th>Value</th>               
+              </tr>
+            </thead>
+            <tbody>
+              <tr><td>Amount</td><td>{{selectedRow.Amount | currency: " "}}</td></tr>
+              <tr><td>Bin</td><td>{{selectedRow.Bin}}</td></tr>
+              <tr><td>Code</td><td>{{selectedRow.Code}}</td></tr>
+              <tr><td>Connector Name</td><td>{{selectedRow.ConnectorName}}</td></tr>
+              <tr><td>Entry Mode</td><td>{{selectedRow.Entry_Mode}}</td></tr>
+              <tr><td>Insert Date Time</td><td>{{selectedRow.insert_DateTime}}</td></tr>
+              <tr><td>Merchant</td><td>{{selectedRow.merchant}}</td></tr>
+              <tr><td>Message Mode</td><td>{{selectedRow.message_Mode}}</td></tr>
+              <tr><td>Message Type</td><td>{{selectedRow.message_Type}}</td></tr>
+              <tr><td>Ori Reference No</td><td>{{selectedRow.ori_RefNo}}</td></tr>
+              <tr><td>PhId</td><td>{{selectedRow.phid}}</td></tr>
+              <tr><td>Pin Mode</td><td>{{selectedRow.piN_Mode}}</td></tr>
+              <tr><td>Reference No</td><td>{{selectedRow.refNo}}</td></tr>
+              <tr><td>Response Code Text</td><td>{{selectedRow.responceCodeText}}</td></tr>
+              <tr><td>Response</td><td>{{selectedRow.response}}</td></tr>
+              <tr><td>Serial No</td><td>{{selectedRow.serial_No}}</td></tr>
+              <tr><td>Trace No</td><td>{{selectedRow.stan}}</td></tr>
+              <tr><td>Terminal</td><td>{{selectedRow.terminal}}</td></tr>
+              <tr><td>Terminal Type</td><td>{{selectedRow.terminal_Type}}</td></tr>
+              <tr><td>Transaction Type</td><td>{{selectedRow.Trx_Type}}</td></tr>
+            </tbody>
+      </table>      
+    </div>
+    <div class="modal-footer">
+      <button type="button" class="btn btn-light" (click)="modal.close('Close click')">Close</button>
+    </div>
+  </ng-template>
+
+</section>
+  
+  
+  
+  
+  
+  
+    
+    

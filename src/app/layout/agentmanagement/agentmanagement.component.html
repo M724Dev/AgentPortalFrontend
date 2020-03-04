@@ -1,0 +1,655 @@
+<form [formGroup]="this.agentForm" autocomplete="off" (submit)="onSubmit()">  
+    <fieldset class="fieldset">
+    <legend class="legend">Agent Information</legend>
+        <!-- <input type= "hidden" name="id" #id="ngModel" [(ngModel)]="service.formData.id"> 
+        <input type= "hidden" name="insertDT" #insertDT="ngModel" [(ngModel)]="service.formData.createddatetime"> 
+        <input type= "hidden" name="insertUser" #insertUser="ngModel" [(ngModel)]="service.formData.usercreate"> -->
+        
+        <div class="row">
+        <div class="col-10">
+            <div class="input-group">
+                <label class="agenttype">Master Agent
+                    <input type="radio" [value]="1" formControlName="mastersubid" (click)="hideAgentBranch(false)">
+                    <span class="checkmark"></span>
+                </label>
+                <label class="agenttype">Sub Agent
+                    <input type="radio" [value]="2" formControlName="mastersubid" (click)="hideAgentBranch(true)">
+                    <span class="checkmark"></span>
+                </label>
+            </div>
+
+            <div class="form-group" [hidden]="isHideSubAgent">
+                <span><b>Choose your MasterAgent</b></span>
+                <br>
+                <br>
+                <div class="input-group">
+                    <select class="custom-select" formControlName="masteridlist">                
+                        <option value="" disabled>Choose your MasterAgent</option>
+                        <option *ngFor="let id of list" [ngValue]="id.masterAgentCodeID">{{id.masterAgentCodeID}}</option>
+                    </select>
+                </div>
+                <br>
+            </div>            
+            
+            <div class="form-group">
+                <div class="row">
+                    <div class="col-4">
+                        <div class="input-group">
+                            <input formControlName="lastname" class="form-control" required>
+                            <label>Last Name</label>
+                            <!-- <div class="validation-error" *ngIf="lastname.invalid && lastname.touched">This field is required.</div> -->
+                        </div>
+                    </div>
+                    
+                    <div class="col-4">
+                        <div class="input-group">
+                            <input formControlName="firstname" class="form-control" required>
+                            <label>First Name</label>
+                            <!-- <div class="validation-error" *ngIf="firstname.invalid && firstname.touched">This field is required.</div> -->
+                        </div>
+                    </div>
+                    
+                    <div class="col-4">
+                        <div class="input-group">
+                            <input formControlName="middlename" class="form-control" required>
+                            <label>Middle Name</label>
+                            <!-- <div class="validation-error" *ngIf="middlename.invalid && middlename.touched">This field is required.</div> -->
+                        </div>
+                    </div>
+                </div>                
+            </div>
+        
+            <div class="row">
+                <div class="col-1">
+                    <div class="input-group">
+                        <label class="role"><b>Check if applicable</b>
+                            <input type="checkbox" formControlName="iscorpname" (change)="changedFieldTypecn()">
+                            <span class="checkmark"></span>
+                        </label>
+                    </div> 
+                </div>
+                
+                <div class="col-11">
+                    <div class="form-group">
+                        <div class="input-group">
+                            <input formControlName="corpname" class="form-control corp"  required>
+                            <label>Corporate Name</label>
+                            <!-- <div class="validation-error" *ngIf="corpname.invalid && corpname.touched">This field is required.</div> -->
+                        </div>
+                    </div>
+                </div>
+            </div> 
+
+            <div class="row">
+                <div class="col-1">
+                    <div class="input-group">
+                        <label class="role"><b>Check if applicable</b>
+                            <input type="checkbox" formControlName="ismerchcategory" (change)="changedFieldTypemc()">
+                            <span class="checkmark"></span>
+                        </label>
+                    </div>  
+                </div>
+                
+                <div class="col-11">
+                    <div class="form-group">
+                        <div class="input-group">
+                            <input formControlName="merchcategory" class="form-control" required>
+                            <label>Merchant Catergory</label>
+                            <!-- <div class="validation-error" *ngIf="merchcategory.invalid && merchcategory.touched">This field is required.</div> -->
+                        </div>
+                    </div>
+                </div>
+            </div> 
+
+            <div class="row">
+                <div class="col-1">
+                    <div class="input-group">
+                        <label class="role"><b>Check if applicable</b>
+                            <input type="checkbox" formControlName="isbusinessname" (change)="changedFieldTypebn()">
+                            <span class="checkmark"></span>
+                        </label>
+                    </div>  
+                </div>
+                
+                <div class="col-11">
+                    <div class="form-group">
+                        <div class="input-group">
+                            <input formControlName="businessname" class="form-control" [disabled] required>
+                            <label>Business Name</label>
+                            <!-- <div class="validation-error" *ngIf="businessname.invalid && businessname.touched">This field is required.</div> -->
+                        </div>
+                    </div>
+                </div>
+            </div> 
+
+            <div class="form-group">
+                <div class="input-group">
+                    <input formControlName="phoneno" class="form-control" required>
+                    <label>Phone Number</label>
+                    <!-- <div class="validation-error" *ngIf="phoneno.invalid && phoneno.touched">This field is required.</div> -->
+                </div>
+            </div>
+        
+            <div class="form-group">
+                <span><b>Complete Business Address</b></span>
+                <br>
+                <br>
+                <div class="row">
+                    <div class="col-4">
+                        <div class="input-group">
+                            <input formControlName="streetno" class="form-control" required>
+                            <label>Street No</label>
+                            <!-- <div class="validation-error" *ngIf="streetno.invalid && streetno.touched">This field is required.</div> -->
+                        </div>
+                    </div>
+                    
+                    <div class="col-4">
+                        <div class="input-group">
+                            <input formControlName="town" class="form-control" required>
+                            <label>Town</label>
+                            <!-- <div class="validation-error" *ngIf="town.invalid && town.touched">This field is required.</div> -->
+                        </div>
+                    </div>
+                    
+                    <div class="col-4">
+                        <div class="input-group">
+                            <input formControlName="city" class="form-control" required>
+                            <label>City</label>
+                            <!-- <div class="validation-error" *ngIf="city.invalid && city.touched">This field is required.</div> -->
+                        </div>
+                    </div>
+                </div>
+            </div>
+        
+            <div class="form-group">            
+                <div class="row">
+                <div class="col-4">
+                    <div class="input-group">
+                        <input formControlName="country" class="form-control" required>
+                        <label>Country</label>
+                        <!-- <div class="validation-error" *ngIf="country.invalid && country.touched">This field is required.</div> -->
+                    </div>
+                    </div>
+                    
+                    <div class="col-4">
+                    <div class="input-group">
+                        <input formControlName="postalcode" class="form-control" required>
+                        <label>Postal Code</label>
+                        <!-- <div class="validation-error" *ngIf="postalcode.invalid && postalcode.touched">This field is required.</div> -->
+                        </div>
+                    </div>
+            </div>
+            </div>
+
+            <div class="form-group">
+                <div class="input-group">
+                    <input formControlName="comptin" class="form-control" required>
+                    <label>Company TIN Number</label>
+                    <!-- <div class="validation-error" *ngIf="comptin.invalid && comptin.touched">This field is required.</div> -->
+                </div>
+            </div>
+        
+            <div class="form-group">
+                <div class="input-group">
+                    <input formControlName="ctcno" class="form-control" required>
+                    <label>Community Tax Certificate Number</label>
+                    <!-- <div class="validation-error" *ngIf="ctcno.invalid && ctcno.touched">This field is required.</div> -->
+                </div>
+            </div>
+
+        </div>    
+        </div>
+    </fieldset>
+    
+    <fieldset class="fieldset" >
+        <legend class="legend">Moa Information</legend>
+        <div class="row">
+            <div class="col-10">            
+                <div class="form-group">
+                    <div class="input-group">                      
+                        <button type="button" class="btn btn-primary"(click)="addNew()">Add Authorized Signatory</button>
+                    </div>
+                </div>
+            </div>            
+        </div>
+        <div class="row">
+            <div class="col-10">
+                <div formArrayName="auth">
+                    <div *ngFor="let auth of authFormGroup.controls; let j = index;">
+                        <div [formGroupName]="j">
+                            <span><b>Authorized Signatory {{j + 1}}</b></span>
+                        <br>
+                        <br>
+                        <div class="form-group">
+                            <div class="row">
+                              <div class="col-4">
+                                  <div class="input-group">
+                                      <input class="form-control" formControlName="authlastname" required>
+                                      <label>Last Name</label>
+                                      <!-- <div class="validation-error" *ngIf="authlname.invalid && authlname.touched">This field is required.</div> -->
+                                  </div>
+                                </div>
+                                
+                                <div class="col-4">
+                                  <div class="input-group">
+                                      <input class="form-control" formControlName="authfirstname" required>
+                                      <label>First Name</label>
+                                      <!-- <div class="validation-error" *ngIf="authfname.invalid && authfname.touched">This field is required.</div> -->
+                                    </div>
+                                </div>
+                                
+                                <div class="col-4">
+                                  <div class="input-group">
+                                      <input class="form-control" formControlName="authmiddlename" required>
+                                      <label>Middle Name</label>
+                                      <!-- <div class="validation-error" *ngIf="authmname.invalid && authmname.touched">This field is required.</div> -->
+                                    </div>
+                                </div>
+                            </div>
+                            
+                        </div>
+                      
+                        <div class="form-group">
+                            <div class="input-group">                      
+                                <input class="form-control" formControlName="authdesignation" required>
+                                <label>Designation</label>
+                                <!-- <div class="validation-error" *ngIf="authdesignation.invalid && authdesignation.touched">This field is required.</div> -->
+                            </div>
+                        </div>
+            
+                        <div class="form-group">
+                              <div class="input-group">
+                                  <input class="form-control" formControlName="valididtype" required>
+                                  <label>Valid Identification Type</label>
+                                  <!-- <div class="validation-error" *ngIf="validtype.invalid && validtype.touched">This field is required.</div> -->
+                              </div>
+                        </div>
+            
+                        <div class="form-group">
+                            <div class="input-group">
+                                <input class="form-control" formControlName="vallididno" required>
+                                <label>Valid Identification Number</label>
+                                <!-- <div class="validation-error" *ngIf="valididno.invalid && valididno.touched">This field is required.</div> -->
+                            </div>
+                        </div>
+            
+                        <div class="form-group">
+                            <div class="input-group">
+                                <input class="form-control" formControlName="valididexpdate" required>
+                                <label>Valid Identification Expiration Date</label>
+                                <!-- <div class="validation-error" *ngIf="validexpdate.invalid && validexpdate.touched">This field is required.</div> -->
+                            </div>
+                        </div>
+
+                        <div class="form-group col-12 text-right">
+                            <button class="btn btn-danger" type="button" (click)="removeAuth(j)"> Remove </button>
+                        </div>
+                        </div>                        
+                    </div>
+                </div>
+            </div>  
+        </div>
+    </fieldset>
+    
+    <fieldset class="fieldset" [hidden]="isHide">
+        <legend class="legend">Agent Branches</legend>
+        <div class="row">
+        <div class="col-10">
+            <div class="form-group">
+                <div class="input-group">                      
+                    <input formControlName="noofagent" class="form-control" required>
+                    <label>No. of Agent's outlets or branches</label>
+                    <!-- <div class="validation-error" *ngIf="authdesignation.invalid && authdesignation.touched">This field is required.</div> -->
+                </div>
+            </div>
+
+            <div formArrayName="terminal">
+                <div *ngFor="let terminal of terminalFormGroup.controls; let i = index;">
+                    <div [formGroupName]="i">
+                        <span><b>Terminal {{i + 1}}</b></span>
+                        <br>
+                        <br>
+                        <div class="form-group">
+                            <div class="input-group">
+                                <input class="form-control" formControlName="terminalname" required>
+                                <label>POS Terminal Name</label>
+                            </div>
+                        </div>
+
+                        <div class="form-group">
+                            <div class="input-group">
+                                <input class="form-control" formControlName="terminaltype" required>
+                                <label>Type of POS Terminal (GPRS, Wi-Fi)</label>
+                            </div>
+                        </div>
+                        
+                        <div class="form-group col-12 text-right">
+                            <button class="btn btn-danger" type="button" (click)="removeTerminal(i)"> Remove </button>
+                        </div>                        
+                    </div>
+                </div>
+            </div>
+
+            <div class="form-group">
+                <div class="input-group">                      
+                    <button type="button" class="btn btn-primary"(click)="addNewTerminal()">Add Terminal</button>
+                </div>
+            </div>
+            
+
+            <!-- <div formArrayName="terminal" *ngFor="let ter of agentForm.get('terminal').controls; let j = index;">
+                <span><b>Terminal {{j + 1}}</b></span>
+                <br>
+                <br>
+                <div class="form-group">
+                    <div class="input-group">
+                        <input class="form-control"  required>
+                        <label>POS Terminal Name</label>
+                    </div>
+                </div>
+    
+                <div class="form-group">
+                      <div class="input-group">
+                          <input class="form-control" required>
+                          <label>Type of POS Terminal (GPRS, Wi-Fi)</label>
+                      </div>
+                </div>            
+            </div> -->
+        </div>  
+        </div>
+    </fieldset>
+
+    <fieldset class="fieldset">
+        <legend class="legend">Contact Information</legend>
+        <div class="row">
+        <div class="col-10">
+            <div class="form-group">
+                <div class="row">
+                    <div class="col-4">
+                        <div class="input-group">
+                            <input formControlName="clastname" class="form-control" required>
+                            <label>Last Name</label>
+                            <!-- <div class="validation-error" *ngIf="lastname.invalid && lastname.touched">This field is required.</div> -->
+                        </div>
+                    </div>
+                    
+                    <div class="col-4">
+                        <div class="input-group">
+                            <input formControlName="cfirstname" class="form-control" required>
+                            <label>First Name</label>
+                            <!-- <div class="validation-error" *ngIf="firstname.invalid && firstname.touched">This field is required.</div> -->
+                        </div>
+                    </div>
+                    
+                    <div class="col-4">
+                        <div class="input-group">
+                            <input formControlName="cmiddlename" class="form-control" required>
+                            <label>Middle Name</label>
+                            <!-- <div class="validation-error" *ngIf="middlename.invalid && middlename.touched">This field is required.</div> -->
+                        </div>
+                    </div>
+                </div>                
+            </div>
+        
+            <div class="form-group">
+                <div class="input-group">                      
+                    <input formControlName="cdesignation" class="form-control"  required>
+                    <label>Designation</label>
+                    <!-- <div class="validation-error" *ngIf="designation.invalid && designation.touched">This field is required.</div> -->
+                </div>
+            </div>
+
+            <div class="form-group">
+                <div class="input-group">
+                    <input formControlName="cdepartment" class="form-control"  required>
+                    <label>Department</label>
+                    <!-- <div class="validation-error" *ngIf="department.invalid && department.touched">This field is required.</div> -->
+                </div>
+            </div>
+
+            <div class="form-group">
+                <div class="input-group">
+                    <input formControlName="ccontactno" class="form-control"  required>
+                    <label>Contact Number</label>
+                    <!-- <div class="validation-error" *ngIf="contactno.invalid && contactno.touched">This field is required.</div> -->
+                </div>
+            </div>
+
+            <div class="form-group">
+                <div class="input-group">
+                    <input formControlName="cfaxno" class="form-control"  required>
+                    <label>Fax Number</label>
+                    <!-- <div class="validation-error" *ngIf="faxno.invalid && faxno.touched">This field is required.</div> -->
+                </div>
+            </div>
+            
+            <div class="form-group">
+                <div class="input-group">
+                    <input formControlName="cemailadd" class="form-control"  required>
+                    <label>Email Address</label>
+                    <!-- <div class="validation-error" *ngIf="emailadd.invalid && emailadd.touched">This field is required.</div> -->
+                </div>
+            </div>
+
+            <div class="form-group">
+                <div class="input-group">
+                    <input formControlName="cbilllname" class="form-control"  required>
+                    <label>Billing Last Name</label>
+                    <!-- <div class="validation-error" *ngIf="billlname.invalid && billlname.touched">This field is required.</div> -->
+                </div>
+            </div>
+
+            <div class="form-group">
+                <div class="input-group">
+                    <input formControlName="cbillfname" class="form-control"  required>
+                    <label>Billing First Name</label>
+                    <!-- <div class="validation-error" *ngIf="billfname.invalid && billfname.touched">This field is required.</div> -->
+                </div>
+            </div>
+
+            <div class="form-group">
+                <div class="input-group">
+                    <input formControlName="cbillmname" class="form-control"  required>
+                    <label>Billing Middle Name</label>
+                    <!-- <div class="validation-error" *ngIf="billmname.invalid && billmname.touched">This field is required.</div> -->
+                </div>
+            </div>
+
+            <div class="form-group">
+                <div class="input-group">
+                    <input formControlName="cbillcontactno" class="form-control"  required>
+                    <label>Billing Contact No</label>
+                    <!-- <div class="validation-error" *ngIf="billcontactno.invalid && billcontactno.touched">This field is required.</div> -->
+                </div>
+            </div>
+
+            
+        </div>  
+        </div>
+    </fieldset>
+
+    <fieldset class="fieldset">
+            <legend class="legend">Bank Information</legend>
+            <div class="row">        
+            <div class="col-10">
+                <div class="form-group">
+                    <div class="input-group">
+                        <input formControlName="depbank" class="form-control"  required>
+                        <label>Depository Bank</label>
+                        <!-- <div class="validation-error" *ngIf="depbank.invalid && depbank.touched">This field is required.</div> -->
+                    </div>
+                </div>
+            
+                <div class="form-group">
+                    <span><b>Complete Business Address</b></span>
+                    <br>
+                    <br>
+                    <div class="row">
+                        <div class="col-4">
+                            <div class="input-group">
+                                <input formControlName="bstreetno" class="form-control" required>
+                                <label>Street No</label>
+                                <!-- <div class="validation-error" *ngIf="streetno.invalid && streetno.touched">This field is required.</div> -->
+                            </div>
+                        </div>
+                        
+                        <div class="col-4">
+                            <div class="input-group">
+                                <input formControlName="btown" class="form-control" required>
+                                <label>Town</label>
+                                <!-- <div class="validation-error" *ngIf="town.invalid && town.touched">This field is required.</div> -->
+                            </div>
+                        </div>
+                        
+                        <div class="col-4">
+                            <div class="input-group">
+                                <input formControlName="bcity" class="form-control" required>
+                                <label>City</label>
+                                <!-- <div class="validation-error" *ngIf="city.invalid && city.touched">This field is required.</div> -->
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            
+                <div class="form-group">            
+                    <div class="row">
+                    <div class="col-4">
+                        <div class="input-group">
+                            <input formControlName="bcountry" class="form-control" required>
+                            <label>Country</label>
+                            <!-- <div class="validation-error" *ngIf="country.invalid && country.touched">This field is required.</div> -->
+                        </div>
+                        </div>
+                        
+                        <div class="col-4">
+                        <div class="input-group">
+                            <input formControlName="bpostalcode" class="form-control" required>
+                            <label>Postal Code</label>
+                            <!-- <div class="validation-error" *ngIf="postalcode.invalid && postalcode.touched">This field is required.</div> -->
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                
+                <div class="form-group">
+                    <div class="input-group">
+                        <input formControlName="bankaccname" class="form-control"  required>
+                        <label>Bank Account Name</label>
+                        <!-- <div class="validation-error" *ngIf="bankacctname.invalid && bankacctname.touched">This field is required.</div> -->
+                    </div>
+                </div>
+            
+                <div class="form-group">
+                    <div class="input-group">
+                        <input formControlName="rbotype" class="form-control"  required>
+                        <label>Referring Bank Officer Type</label>
+                        <!-- <div class="validation-error" *ngIf="rbotype.invalid && rbotype.touched">This field is required.</div> -->
+                    </div>
+                </div>
+
+                <div class="form-group">
+                    <div class="row">
+                        <div class="col-4">
+                            <div class="input-group">
+                                <input formControlName="rbolastname" class="form-control" required>
+                                <label>Last Name</label>
+                                <!-- <div class="validation-error" *ngIf="rbolastname.invalid && rbolastname.touched">This field is required.</div> -->
+                            </div>
+                        </div>
+                        
+                        <div class="col-4">
+                            <div class="input-group">
+                                <input formControlName="rbofirstname" class="form-control" required>
+                                <label>First Name</label>
+                                <!-- <div class="validation-error" *ngIf="rbofname.invalid && rbofname.touched">This field is required.</div> -->
+                            </div>
+                        </div>
+                        
+                        <div class="col-4">
+                            <div class="input-group">
+                                <input formControlName="rbomiddlename" class="form-control" required>
+                                <label>Middle Name</label>
+                                <!-- <div class="validation-error" *ngIf="rbomiddlename.invalid && rbomiddlename.touched">This field is required.</div> -->
+                            </div>
+                        </div>
+                    </div>                
+                </div>
+
+                <div class="form-group">
+                    <div class="input-group">
+                        <input formControlName="rboemailadd" class="form-control"  required>
+                        <label>Email Address</label>
+                        <!-- <div class="validation-error" *ngIf="rboemailadd.invalid && rboemailadd.touched">This field is required.</div> -->
+                    </div>
+                </div>
+
+                <div class="form-group">
+                    <div class="input-group">
+                        <input formControlName="rbocontactno" class="form-control"  required>
+                        <label>Contact No</label>
+                        <!-- <div class="validation-error" *ngIf="rbocontactno.invalid && rbocontactno.touched">This field is required.</div> -->
+                    </div>
+                </div>
+
+                <span><b>Bank Fees</b></span>
+                <br>
+                <br>
+
+                <!-- <div *ngFor="let skill of skills.controls; let i=index;">
+                    <div class="row">                    
+                        <div class="col-2">                        
+                            <div class="input-group">
+                                <label class="banking"><b>{{user.skills[i].name}}</b>                                
+                                </label>
+                            </div> 
+                        </div>
+                        <div class="col-2">
+                            <input #cOcW type="checkbox" [formControl]="skill"/>
+                            <span class="checkmark"></span>
+                        </div>
+                        <div class="col-8">
+                            <div class="form-group">
+                                <div class="input-group">
+                                    <input [formControl]="skill" class="form-control corp" [disabled]="!cOcW.checked" required>
+                                    <label>Convenience Fee</label>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div> -->
+
+                <div formArrayName="bankfees">
+                    <div *ngFor="let bfee of bankFeesFormGroup.controls; let i = index;">
+                        <div [formGroupName]="i">
+                            <span><b>Terminal {{i + 1}}</b></span>
+                            <br>
+                            <br>
+                            <div class="form-group">
+                                <div *ngFor="let skill of skills.controls; let i=index;">
+                                    <div class="input-group">
+                                        <input #cOcW type="checkbox" [formControl]="skill"/>
+                                        <span class="checkmark"></span>
+                                    </div>
+                                </div>                                
+                            </div>
+    
+                            <div class="form-group">
+                                <div class="input-group">
+                                    <input class="form-control" formControlName="convfee" required>
+                                    <label>Type of POS Terminal (GPRS, Wi-Fi)</label>
+                                </div>
+                            </div>                 
+                        </div>
+                    </div>
+                </div>
+
+                <div class="form-group">
+                    <button class="btn btn-success btn-lg btn-block" type="submit" [disabled]="!this.agentForm.valid"><i class="fa fa-save"></i> Submit</button>  
+                    <button class="btn btn-danger btn-lg btn-block" type="button" (click)="cancel()"><i class="fa fa-ban"></i> Cancel</button>
+                </div>          
+            </div> 
+        </div>
+    </fieldset>
+    
+</form>
+  

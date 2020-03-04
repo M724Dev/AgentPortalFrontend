@@ -1,0 +1,24 @@
+<div class="login-page">
+        <div class="row justify-content-md-center">
+            <div class="col-md-4">
+                <img src="assets/images/mobi724_logo.png" width="200px" class="user-avatar" />
+                <h1>Switch Management System</h1>
+                <form #form="ngForm" autocomplete="off" (submit)="onSubmit(form)">
+                    <div class="form-group">
+                        <label>Username</label>
+                        <input type="text" #username="ngModel" name="username" [(ngModel)]="formModel.username" class="form-control input-underline input-lg" required>
+                    </div>
+                    
+                    <div class="form-group">
+                        <label>Password</label>
+                        <input type="password" #password="ngModel" name="password" [(ngModel)]="formModel.password" class="form-control input-underline input-lg" required>
+                        <a [routerLink]="['/password-reset']" [routerLinkActive]="['router-link-active']">
+                            <span class="sub">Forgot Password?</span>
+                        </a> 
+                    </div>   
+                          
+                    <button type="submit" class="btn rounded-btn" [disabled]="form.invalid"><span class="actions">Log in</span></button>
+                </form>
+        </div>
+    </div>
+</div>

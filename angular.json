@@ -3,7 +3,7 @@
   "version": 1,
   "newProjectRoot": "projects",
   "projects": {
-    "SMS-UI": {
+    "ABMS": {
       "projectType": "application",
       "schematics": {
         "@schematics/angular:component": {
@@ -17,20 +17,33 @@
         "build": {
           "builder": "@angular-devkit/build-angular:browser",
           "options": {
-            "outputPath": "dist/SMS-UI",
+            "outputPath": "dist/ABMS",
             "index": "src/index.html",
             "main": "src/main.ts",
             "polyfills": "src/polyfills.ts",
             "tsConfig": "tsconfig.app.json",
             "aot": false,
             "assets": [
-              "src/favicon.ico",
+              "src/mobi_logo_724.ico",
               "src/assets"
             ],
             "styles": [
-              "src/styles.scss"
+              "src/styles.scss",
+              "node_modules/bootstrap/dist/css/bootstrap.min.css",
+              "node_modules/font-awesome/css/font-awesome.css",
+              "node_modules/datatables.net-dt/css/jquery.dataTables.css",
+              "node_modules/ngx-toastr/toastr.css"
             ],
-            "scripts": []
+            "scripts": [
+              "node_modules/jquery/dist/jquery.js",
+              "node_modules/datatables.net/js/jquery.dataTables.js",
+              "node_modules/jszip/dist/jszip.js",
+              "node_modules/datatables.net-buttons/js/dataTables.buttons.js",
+              "node_modules/datatables.net-buttons/js/buttons.colVis.js",
+              "node_modules/datatables.net-buttons/js/buttons.flash.js",
+              "node_modules/datatables.net-buttons/js/buttons.html5.js",
+              "node_modules/datatables.net-buttons/js/buttons.print.js"
+            ]
           },
           "configurations": {
             "production": {
@@ -62,18 +75,18 @@
         "serve": {
           "builder": "@angular-devkit/build-angular:dev-server",
           "options": {
-            "browserTarget": "SMS-UI:build"
+            "browserTarget": "ABMS:build"
           },
           "configurations": {
             "production": {
-              "browserTarget": "SMS-UI:build:production"
+              "browserTarget": "ABMS:build:production"
             }
           }
         },
         "extract-i18n": {
           "builder": "@angular-devkit/build-angular:extract-i18n",
           "options": {
-            "browserTarget": "SMS-UI:build"
+            "browserTarget": "ABMS:build"
           }
         },
         "test": {
@@ -84,7 +97,7 @@
             "tsConfig": "tsconfig.spec.json",
             "karmaConfig": "karma.conf.js",
             "assets": [
-              "src/favicon.ico",
+              "src/",
               "src/assets"
             ],
             "styles": [
@@ -110,15 +123,128 @@
           "builder": "@angular-devkit/build-angular:protractor",
           "options": {
             "protractorConfig": "e2e/protractor.conf.js",
-            "devServerTarget": "SMS-UI:serve"
+            "devServerTarget": "ABMS:serve"
           },
           "configurations": {
             "production": {
-              "devServerTarget": "SMS-UI:serve:production"
+              "devServerTarget": "ABMS:serve:production"
+            }
+          }
+        }
+      }
+    },
+    "user": {
+      "projectType": "application",
+      "schematics": {},
+      "root": "projects/user",
+      "sourceRoot": "projects/user/src",
+      "prefix": "app",
+      "architect": {
+        "build": {
+          "builder": "@angular-devkit/build-angular:browser",
+          "options": {
+            "outputPath": "dist/user",
+            "index": "projects/user/src/index.html",
+            "main": "projects/user/src/main.ts",
+            "polyfills": "projects/user/src/polyfills.ts",
+            "tsConfig": "projects/user/tsconfig.app.json",
+            "aot": false,
+            "assets": [
+              "projects/user/src/favicon.ico",
+              "projects/user/src/assets"
+            ],
+            "styles": [
+              "projects/user/src/styles.css"
+            ],
+            "scripts": []
+          },
+          "configurations": {
+            "production": {
+              "fileReplacements": [
+                {
+                  "replace": "projects/user/src/environments/environment.ts",
+                  "with": "projects/user/src/environments/environment.prod.ts"
+                }
+              ],
+              "optimization": true,
+              "outputHashing": "all",
+              "sourceMap": false,
+              "extractCss": true,
+              "namedChunks": false,
+              "aot": true,
+              "extractLicenses": true,
+              "vendorChunk": false,
+              "buildOptimizer": true,
+              "budgets": [
+                {
+                  "type": "initial",
+                  "maximumWarning": "2mb",
+                  "maximumError": "5mb"
+                }
+              ]
+            }
+          }
+        },
+        "serve": {
+          "builder": "@angular-devkit/build-angular:dev-server",
+          "options": {
+            "browserTarget": "user:build"
+          },
+          "configurations": {
+            "production": {
+              "browserTarget": "user:build:production"
+            }
+          }
+        },
+        "extract-i18n": {
+          "builder": "@angular-devkit/build-angular:extract-i18n",
+          "options": {
+            "browserTarget": "user:build"
+          }
+        },
+        "test": {
+          "builder": "@angular-devkit/build-angular:karma",
+          "options": {
+            "main": "projects/user/src/test.ts",
+            "polyfills": "projects/user/src/polyfills.ts",
+            "tsConfig": "projects/user/tsconfig.spec.json",
+            "karmaConfig": "projects/user/karma.conf.js",
+            "assets": [
+              "projects/user/src/favicon.ico",
+              "projects/user/src/assets"
+            ],
+            "styles": [
+              "projects/user/src/styles.css"
+            ],
+            "scripts": []
+          }
+        },
+        "lint": {
+          "builder": "@angular-devkit/build-angular:tslint",
+          "options": {
+            "tsConfig": [
+              "projects/user/tsconfig.app.json",
+              "projects/user/tsconfig.spec.json",
+              "projects/user/e2e/tsconfig.json"
+            ],
+            "exclude": [
+              "**/node_modules/**"
+            ]
+          }
+        },
+        "e2e": {
+          "builder": "@angular-devkit/build-angular:protractor",
+          "options": {
+            "protractorConfig": "projects/user/e2e/protractor.conf.js",
+            "devServerTarget": "user:serve"
+          },
+          "configurations": {
+            "production": {
+              "devServerTarget": "user:serve:production"
             }
           }
         }
       }
     }},
-  "defaultProject": "SMS-UI"
+  "defaultProject": "ABMS"
 }

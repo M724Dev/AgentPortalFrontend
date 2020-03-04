@@ -1,0 +1,88 @@
+.col-10 {
+    padding-left: 100px;
+    padding-top: 20px;
+}
+
+.legend {
+    width: auto;
+    border: 1px;
+    margin-left: 20px;
+}
+
+.fieldset {
+    border: solid;
+    border-width: thin;
+}
+
+.row input.ng-dirty.ng-invalid {
+    border-color: #dc3545;
+}
+
+.role {
+    font-size: 8px;
+}
+.agenttype {
+    font-size: 14px;
+    padding-right: 1em;
+}
+.banking {
+    font-size: 12px;
+    display: table-cell;
+    padding-right: 1em;
+}
+
+.sub-banking {
+    font-size: 10px;
+    display: table-cell;
+    padding-right: 1em;
+}
+.row div.validation-error {
+    width: 100%;
+    font-size: 80%;
+    color: #dc3545;
+}
+
+.row input {
+    margin-bottom: 10px;
+    width: 100%;
+    box-sizing: border-box;
+    box-shadow: none;
+    outline: none;
+    border: 1;
+    border-radius: 2px;
+    border-bottom: 2px solid black;
+}
+
+.row .form-group  {
+    position: relative;
+}
+.row .form-group label {
+    position: absolute;
+    top: 10px;
+    left: 0;
+    color:rgb(53, 50, 50);
+    transition: .5s;
+    pointer-events: none;
+    padding-left: 5px;
+}
+.row .form-check {
+    position: left;
+    display: block;
+    padding-left: 1.25rem;
+}
+
+.row .form-check-input {
+    position: absolute;
+    margin-top: .3rem;
+    margin-left: -1.25rem;
+}
+
+.row input:focus ~ label,
+.row input:valid ~ label  {
+    top: -20px;
+    left: 0;
+    color: rgb(41, 16, 163);
+    font-size: 12px;
+    font-weight: bold;
+}
+

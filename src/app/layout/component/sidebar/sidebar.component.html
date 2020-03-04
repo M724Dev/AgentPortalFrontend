@@ -1,0 +1,129 @@
+<nav class="sidebar" [ngClass]="{sidebarPushRight: isActive, collapsed: collapsed}">
+    <div class="list-group">
+        
+        <div class="nested-menu">      
+            <a class="list-group-item" (click)="addExpandClass('pages')">
+                <i class="fa fa-user"></i>&nbsp;
+                <span class="main">Agents</span>&nbsp;
+                <span class="fa fa-caret-right agent"></span>
+            </a>
+            <li class="nested" [class.expand]="showMenu === 'pages'">
+                <ul class="submenu">
+                    <li>
+                        <a [routerLink]="['/agentlist']" [routerLinkActive]="['router-link-active']" (click)="refresh()">
+                            <span class="sub">Agent List</span>
+                        </a>
+                    </li>
+                    <li>
+                        <a [routerLink]="['/agentmanagement']" [routerLinkActive]="['router-link-active']" (click)="refresh()">
+                            <span class="sub">Agent Management</span>
+                        </a>
+                    </li>
+                </ul>
+            </li>
+        </div>
+
+        <div class="nested-menu" *ngIf="forAllbank == 'false'">      
+            <a class="list-group-item" (click)="addExpandClass('pages1')">
+                <i class="fa fa-building"></i>&nbsp;
+                <span class="main">Merchants</span>&nbsp;
+                <span class="fa fa-caret-right merch"></span>
+            </a>
+            <li class="nested" [class.expand]="showMenu === 'pages1'">
+                <ul class="submenu">
+                    <li>
+                        <a [routerLink]="['/merchantlist']" [routerLinkActive]="['router-link-active']" (click)="refresh()">
+                            <span class="sub">Merchant List</span>
+                        </a>
+                    </li>
+                    <li>
+                        <a [routerLink]="['/merchantmanagement']" [routerLinkActive]="['router-link-active']" (click)="refresh()">
+                            <span class="sub">Merchant Management</span>
+                        </a>
+                    </li>
+                </ul>
+            </li>
+        </div>
+
+        <div class="nested-menu">
+            <a class="list-group-item" (click)="addExpandClass('pages2')">
+                <i class="fa fa-line-chart"></i>&nbsp;
+                <span class="main">Transaction</span>&nbsp;
+                <span class="fa fa-caret-right trans"></span>
+            </a>
+            <li class="nested" [class.expand]="showMenu === 'pages2'">
+                <ul class="submenu">
+                    <li>
+                        <a [routerLink]="['/monitoring']" [routerLinkActive]="['router-link-active']" (click)="refresh()">                            
+                            <span class="sub">Monitoring</span>
+                        </a>
+                    </li>                    
+                </ul>
+            </li>
+        </div>
+
+        <div class="nested-menu" *ngIf="userRole == '1'">      
+                <a class="list-group-item" (click)="addExpandClass('pages3')">
+                    <i class="fa fa-edit"></i>&nbsp;
+                    <span class="main">Users</span>&nbsp;
+                    <span class="fa fa-caret-right user"></span>
+                </a>
+                <li class="nested" [class.expand]="showMenu === 'pages3'">
+                    <ul class="submenu">
+                        <li>
+                            <a [routerLink]="['/userlist']" [routerLinkActive]="['router-link-active']" (click)="refresh()">
+                                    <span class="sub">User List</span>
+                            </a>
+                        </li>
+                        <li>
+                            <a [routerLink]="['/createuser']" [routerLinkActive]="['router-link-active']" (click)="refresh()">
+                                <span class="sub">User Management</span>
+                            </a>
+                        </li>
+                    </ul>
+                </li>
+            </div>
+        
+                  
+
+        <div class="header-fields">            
+            <div class="nested-menu">
+                <a class="list-group-item" (click)="addExpandClass('profile')">
+                <span><i class="fa fa-user"></i>&nbsp; {{fullName}}</span>
+                </a>
+                <li class="nested" [class.expand]="showMenu === 'profile'">
+                    <ul class="submenu">
+                        <li>
+                            <a class="dropdown-item" [routerLink]="['/changepassword']">
+                                <i class="fa fa-fw fa-user"></i> Profile
+                            </a>
+                        </li>
+                        <!-- <li>
+                            <a href="javascript:void(0)">
+                                <span><i class="fa fa-fw fa-envelope"></i> Inbox</span>
+                            </a>
+                        </li>
+                        <li>
+                            <a href="javascript:void(0)">
+                                <span><i class="fa fa-fw fa-gear"></i> Settings</span>
+                            </a>
+                        </li> -->
+                        <li>
+                            <a class="dropdown-item" [routerLink]="['/login']" (click)="onLoggedout()" >
+                                <i class="fa fa-fw fa-power-off"></i> Log Out
+                            </a>
+                        </li>
+                    </ul>
+                </li>
+            </div>
+        </div>
+    </div>
+    <div class="toggle-button" [ngClass]="{collapsed: collapsed}" (click)="toggleCollapsed()">
+        <i class="fa fa-fw fa-angle-double-{{collapsed?'right':'left'}}"></i>&nbsp;
+        <span class="hide">Collapse Sidebar</span>
+    </div>
+</nav>
+
+
+
+  

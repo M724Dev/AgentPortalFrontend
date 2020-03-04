@@ -1,0 +1,289 @@
+<h3 style="text-align: center;">Merchant Management</h3>
+<hr>
+<form #form="ngForm" autocomplete="off" (submit)="onSubmit(form)">
+  
+    <fieldset class="fieldset">
+    <legend class="legend">Merchant Information</legend>
+    <!-- <input type="hidden" name="ID" [value]="service.formData.id">-->
+    <input type= "hidden" name="id" #id="ngModel" [(ngModel)]="service.formData.id"> 
+    <input type= "hidden" name="insertDT" #insertDT="ngModel" [(ngModel)]="service.formData.insertDT"> 
+    <input type= "hidden" name="insertUser" #insertUser="ngModel" [(ngModel)]="service.formData.insertUser">
+    <div class="row">
+      <div class="col-2"></div>
+      <div class="col-6">
+          <div class="form-group">
+              <div class="input-group">
+                  <!-- <div class="input input-group-prepend">
+                      <div class="input-group-text bg-white">
+                          <i class="fa fa-id-card"></i>
+                      </div>
+                  </div> -->
+                  <input name="masterMerchantID" #masterMerchantID="ngModel" [(ngModel)]="service.formData.masterMerchantID" class="form-control" required>
+                  <label>Master Merchant ID</label>
+                  <div class="validation-error" *ngIf="masterMerchantID.invalid && masterMerchantID.touched">This field is required.</div>
+              </div>
+          </div>
+      
+          <div class="form-group">
+              <div class="input-group">
+                  <!-- <div class="input-group-prepend">
+                      <div class="input-group-text bg-white">
+                          <i class="fa fa-id-card"></i>
+                      </div>
+                  </div> -->
+                  <input name="MerchantID" #merchantID="ngModel" [(ngModel)]="service.formData.merchantID" class="form-control" required>
+                  <label>Merchant ID</label>
+                  <div class="validation-error" *ngIf="merchantID.invalid && merchantID.touched">This field is required.</div>
+              </div>
+          </div>
+
+          <div class="form-group">
+              <div class="input-group">
+                  <!-- <div class="input-group-prepend">
+                      <div class="input-group-text bg-white">
+                          <i class="fa fa-user-circle"></i>
+                      </div>
+                  </div> -->
+                  <input name="merchant_Name" #merchant_Name="ngModel" [(ngModel)]="service.formData.merchant_Name" class="form-control"  required>
+                  <label>Merchant Name</label>
+                  <div class="validation-error" *ngIf="merchant_Name.invalid && merchant_Name.touched">This field is required.</div>
+              </div>
+          </div>
+      
+          <div class="form-group">
+              <div class="input-group">
+                  <!-- <div class="input-group-prepend">
+                      <div class="input-group-text bg-white">
+                         <i class="fa fa-home"></i>
+                      </div>
+                  </div> -->
+                  <input name="Address" #address="ngModel" [(ngModel)]="service.formData.address" class="form-control"  required>
+                  <label>Address</label>
+                  <div class="validation-error" *ngIf="address.invalid && address.touched">This field is required.</div>
+              </div>
+          </div>
+      
+          <div class="form-group">
+              <div class="input-group">
+                  <!-- <div class="input-group-prepend">
+                      <div class="input-group-text bg-white">
+                          <i class="fa fa-user-circle"></i>
+                      </div>
+                  </div> -->
+                  <input name="DBA" #DBA="ngModel" [(ngModel)]="service.formData.dba" class="form-control" required>
+                  <label>DBA</label>
+                  <div class="validation-error" *ngIf="DBA.invalid && DBA.touched">This field is required.</div>
+              </div>
+          </div>
+      
+          <div class="form-group">
+              <div class="input-group">
+                  <!-- <div class="input-group-prepend">
+                      <div class="input-group-text bg-white">
+                          <i class="fa fa-home"></i>
+                      </div>
+                  </div> -->
+                  <input name="Branch" #Branch="ngModel" [(ngModel)]="service.formData.branch" class="form-control"  required>
+                  <label>Branch</label>
+                  <div class="validation-error" *ngIf="Branch.invalid && Branch.touched">This field is required.</div>
+              </div>
+          </div>
+      
+          <div class="form-group">
+              <div class="input-group">
+                  <!-- <div class="input-group-prepend">
+                      <div class="input-group-text bg-white">
+                          <i class="fa fa-home"></i>
+                      </div>
+                  </div> -->
+                  <input name="depository_Branch" #depository_Branch="ngModel" [(ngModel)]="service.formData.depository_Branch" class="form-control" required>
+                  <label>Depository Branch</label>
+                  <div class="validation-error" *ngIf="depository_Branch.invalid && depository_Branch.touched">This field is required.</div>
+              </div>
+          </div>
+      
+          <div class="form-group">
+              <div class="input-group">
+                  <!-- <div class="input-group-prepend">
+                      <div class="input-group-text bg-white">
+                          <i class="fa fa-list"></i>
+                      </div>
+                  </div> -->
+                  <input name="merchant_Category" #merchant_Category="ngModel" [(ngModel)]="service.formData.merchant_Category" class="form-control" required>
+                  <label>Category</label>
+                  <div class="validation-error" *ngIf="merchant_Category.invalid && merchant_Category.touched">This field is required.</div>
+              </div>
+          </div>
+      
+          <div class="form-group">
+              <div class="input-group">
+                  <!-- <div class="input-group-prepend">
+                      <div class="input-group-text bg-white">
+                          <i class="fa fa-list-ul"></i>
+                      </div>
+                  </div> -->
+                  <input name="fee_Type" #fee_Type="ngModel" [(ngModel)]="service.formData.fee_Type" class="form-control"  required>
+                  <label>Merchant Type</label>
+                  <div class="validation-error" *ngIf="fee_Type.invalid && fee_Type.touched">This field is required.</div>
+              </div>
+          </div>
+      
+          <div class="form-group">
+              <div class="input-group">
+                  <!-- <div class="input-group-prepend">
+                      <div class="input-group-text bg-white">
+                          <i class="fa fa-money"></i>
+                      </div>
+                  </div> -->
+                  <input data-type="currency" name="fee" #fee="ngModel" [(ngModel)]="service.formData.fee" class="form-control"  required>
+                  <label>Applicable/Fee</label>
+                  <div class="validation-error" *ngIf="fee.invalid && fee.touched">This field is required.</div>
+              </div>
+          </div>
+      
+          <div class="form-group">
+              <div class="input-group">
+                  <!-- <div class="input-group-prepend">
+                      <div class="input-group-text bg-white">
+                          <i class="fa fa-money"></i>
+                      </div>
+                  </div> -->
+                  <input data-type="currency" name="MGR" #MGR="ngModel" [(ngModel)]="service.formData.mgr" class="form-control" required>
+                  <label>Device Rental/MGR</label>
+                  <div class="validation-error" *ngIf="MGR.invalid && MGR.touched">This field is required.</div>
+              </div>
+          </div>   
+      
+          <div class="form-group">
+              <div class="input-group">
+                  <!-- <div class="input-group-prepend">
+                      <div class="input-group-text bg-white">
+                          <i class="fa fa-credit-card"></i>
+                      </div>
+                  </div> -->
+                  <input name="SettlementAccountNumber" #SettlementAccountNumber="ngModel" [(ngModel)]="service.formData.settlementAccountNumber" class="form-control" required>
+                  <label>Settlement Account Number</label>
+                  <div class="validation-error" *ngIf="SettlementAccountNumber.invalid && SettlementAccountNumber.touched">This field is required.</div>
+              </div>
+          </div>       
+      </div>      
+      <div class="col"></div>      
+    </div>
+  </fieldset>
+  
+  <fieldset class="fieldset">
+        <legend class="legend">Terminal Information</legend>
+        <div class="row">
+          <div class="col-2"></div>
+          <div class="col-6">
+              <div class="form-group">
+                  <div class="input-group">
+                      <!-- <div class="input-group-prepend">
+                          <div class="input-group-text bg-white">
+                              <i class="fa fa-id-card"></i>
+                          </div>
+                      </div> -->
+                      <input name="TerminalID" #terminalID="ngModel" [(ngModel)]="service.formData.terminalID" class="form-control"  required>
+                      <label>Terminal ID</label>
+                      <div class="validation-error" *ngIf="terminalID.invalid && terminalID.touched">This field is required.</div>
+                  </div>
+              </div>
+          
+              <div class="form-group">
+                  <div class="input-group">
+                      <!-- <div class="input-group-prepend">
+                          <div class="input-group-text bg-white">
+                              <i class="fa fa-id-card"></i>
+                          </div>
+                      </div> -->
+                      <input name="terminal_Type" #terminal_Type="ngModel" [(ngModel)]="service.formData.terminal_Type" class="form-control"  required>
+                      <label>Terminal Type</label>
+                      <div class="validation-error" *ngIf="terminal_Type.invalid && terminal_Type.touched">This field is required.</div>
+                  </div>
+              </div>
+              
+              <div class="form-group">
+                  <div class="input-group">
+                      <!-- <div class="input-group-prepend">
+                          <div class="input-group-text bg-white">
+                              <i class="fa fa-user-circle"></i>
+                          </div>
+                      </div> -->
+                      <input name="simcard_Telco" #simcard_Telco="ngModel" [(ngModel)]="service.formData.simcard_Telco" class="form-control"  required>
+                      <label>SimCard/Telco</label>
+                      <div class="validation-error" *ngIf="simcard_Telco.invalid && simcard_Telco.touched">This field is required.</div>
+                  </div>
+              </div>
+          </div>      
+          <div class="col"></div>      
+        </div>
+  </fieldset>
+
+  <fieldset class="fieldset">
+        <legend class="legend">Contact Information</legend>
+        <div class="row">
+          <div class="col-2"></div>
+          <div class="col-6">
+              <div class="form-group">
+                  <div class="input-group">
+                      <!-- <div class="input-group-prepend">
+                          <div class="input-group-text bg-white">
+                              <i class="fa fa-id-card"></i>
+                          </div>
+                      </div> -->
+                      <input name="contact_Person" #contact_Person="ngModel" [(ngModel)]="service.formData.contact_Person" class="form-control"  required>
+                      <label>Contact Person</label>
+                      <div class="validation-error" *ngIf="contact_Person.invalid && contact_Person.touched">This field is required.</div>
+                  </div>
+              </div>
+          
+              <div class="form-group">
+                  <div class="input-group">
+                      <!-- <div class="input-group-prepend">
+                          <div class="input-group-text bg-white">
+                              <i class="fa fa-id-card"></i>
+                          </div>
+                      </div> -->
+                      <input name="designation" #designation="ngModel" [(ngModel)]="service.formData.designation" class="form-control" required>
+                      <label>Contact Designation</label>
+                      <div class="validation-error" *ngIf="designation.invalid && designation.touched">This field is required.</div>
+                  </div>
+              </div>
+              
+              <div class="form-group">
+                  <div class="input-group">
+                      <!-- <div class="input-group-prepend">
+                          <div class="input-group-text bg-white">
+                              <i class="fa fa-user-circle"></i>
+                          </div>
+                      </div> -->
+                      <input name="contact_Number" #contact_Number="ngModel" [(ngModel)]="service.formData.contact_Number" class="form-control"  required>
+                      <label>Contact Number</label>
+                      <div class="validation-error" *ngIf="contact_Number.invalid && contact_Number.touched">This field is required.</div>
+                  </div>
+              </div>
+          
+              <div class="form-group">
+                  <div class="input-group">
+                      <!-- <div class="input-group-prepend">
+                          <div class="input-group-text bg-white">
+                             <i class="fa fa-home"></i>
+                          </div>
+                      </div> -->
+                      <input name="report_Email" #report_Email="ngModel" [(ngModel)]="service.formData.report_Email" class="form-control" required>
+                      <label>Email for Report</label>
+                      <div class="validation-error" *ngIf="report_Email.invalid && report_Email.touched">This field is required.</div>
+                  </div>
+              </div>
+
+              
+            <div class="form-group">
+                <button class="btn btn-success btn-lg btn-block" type="submit" [disabled]="form.invalid"><i class="fa fa-save"></i> Submit</button>                
+                <button class="btn btn-danger btn-lg btn-block" type="button" (click)="cancel()"><i class="fa fa-ban"></i> Cancel</button>
+            </div>          
+          </div>      
+          <div class="col"></div>      
+        </div>
+  </fieldset>
+  
+</form>
